@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AR.js</title>
+<script type='text/javascript' src='dist/bundle.js'></script>
+</head>
+<body>
+     
+<a-scene arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' cursor='rayOrigin: mouse' raycaster='near:0.1; far: 10000' renderer='antialias: true; alpha: true'>
+     <assets>
+          <a-asset-item src='assets/cafe/scene.gltf' id='coffee'></a-asset-item>
+          <a-asset-item src='assets/food/scene.gltf' id='food'></a-asset-item>
+</assets>
+
+<a-camera id='camera' look-controls-enabled='false' near="0.1" far="50000" fov="80" arjs-look-controls='smoothingFactor: 0.1' gps-projected-camera='gpsMinDistance: 5' rotation-reader vertical-controls wasd-controls="acceleration: 1300"> </a-camera>     
+<a-entity terrarium-dem='zoom: 13; url: https://hikar.org/webapp/dem/{z}/{x}/{y}.png' osm3d='url: https://hikar.org/webapp/map/{z}/{x}/{y}.json?outProj=4326;emitRawData:true' poifinder></a-entity>
+</a-scene>
+</body>
+</html>
