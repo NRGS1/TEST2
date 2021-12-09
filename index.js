@@ -37,21 +37,22 @@ AFRAME.registerComponent('poifinder', {
                     //the text and gltf model
                     const textEntity = document.createElement('a-text');
                     const coffeentity = document.createElement('a-entity');
+                    const backtext = document.createElement('a-plane');
                     const compoundEntity = document.createElement('a-entity');
 
                     //Import the model and will specify the size and the position
                     coffeentity.setAttribute('gltf-model', '#coffee');
 
                     coffeentity.setAttribute('position', {
-                        x: 0,
-                        y: 70,
+                        x: -30,
+                        y: 0,
                         z: 0
                     });
 
                     coffeentity.setAttribute('scale',  {
-                        x: 20,
-                        y: 20,
-                        z: 20
+                        x: 10,
+                        y: 10,
+                        z: 10
                     });
 
                     //set the compound entity on the lat log of the poi
@@ -69,14 +70,24 @@ AFRAME.registerComponent('poifinder', {
                     });
 
                     // Set the text scale
+                    textEntity.setAttribute('color','#000')
                     textEntity.setAttribute('scale',  {
-                        x: 200,
-                        y: 200,
-                        z: 200
+                        x: 20,
+                        y: 20,
+                        z: 20
                     });
+                    
+                    backtext.setAttribute('height', 20);
+                    backtext.setAttribute('width', 30);
+                    backtext.setAttribute('color', {
+                        color: 'white'
+                    });
+
+
 
                     // Make the model and text to look-at the camera
                     coffeentity.setAttribute('look-at', '[gps-projected-camera]');
+                    backtext.setAttribute('look-at', '[gps-projected-camera]');
                     textEntity.setAttribute('look-at', '[gps-projected-camera]');
 
     
@@ -91,9 +102,11 @@ AFRAME.registerComponent('poifinder', {
                         name: cafe.properties.name,
                         website: cafe.properties.website
                     });
+                    backtext.appendChild(textEntity);
+
 
                     //add the text and model elements inside the compound entity
-                    compoundEntity.appendChild(textEntity);
+                    compoundEntity.appendChild(backtext);
                     compoundEntity.appendChild(coffeentity);
                     
                     // Add the compound entity to the scene
@@ -111,6 +124,7 @@ AFRAME.registerComponent('poifinder', {
                 //the text and gltf model
                 const textEntity = document.createElement('a-text');
                 const foodentity = document.createElement('a-entity');
+                const backtext = document.createElement('a-plane');
                 const compoundEntity = document.createElement('a-entity');
                     
                 //Import the model and will specify the size and the position
@@ -118,14 +132,14 @@ AFRAME.registerComponent('poifinder', {
 
                 foodentity.setAttribute('position', {
                     x: 0,
-                    y: 70,
+                    y: 10,
                     z: 0
                 });
 
                 foodentity.setAttribute('scale',  {
-                    x: 100,
-                    y: 100,
-                    z: 100
+                    x: 30,
+                    y: 30,
+                    z: 30
                 });
 
                 //set the compound entity on the lat log of the poi
@@ -142,14 +156,23 @@ AFRAME.registerComponent('poifinder', {
                     longitude: restaurant.geometry.coordinates[0]
                 });
 
-                // Set the text scale
-                textEntity.setAttribute('scale',  {
-                    x: 200,
-                    y: 200,
-                    z: 200
-                });
+                    // Set the text scale
+                    textEntity.setAttribute('color','#000')
+                    textEntity.setAttribute('scale',  {
+                        x: 20,
+                        y: 20,
+                        z: 20
+                    });
+                    
+                    backtext.setAttribute('height', 20);
+                    backtext.setAttribute('width', 30);
+                    backtext.setAttribute('color', {
+                        color: 'white'
+                    });
+
                 // Make the model and text to look-at the camera
                 foodentity.setAttribute('look-at', '[gps-projected-camera]')
+                backtext.setAttribute('look-at', '[gps-projected-camera]');
                 textEntity.setAttribute('look-at', '[gps-projected-camera]');
 
 
@@ -163,10 +186,11 @@ AFRAME.registerComponent('poifinder', {
                     name: restaurant.properties.name,
                     website: restaurant.properties.website
                 });
+                backtext.appendChild(textEntity);
 
                 //add the text and model elements inside the compound entity
+                compoundEntity.appendChild(backtext);
                 compoundEntity.appendChild(foodentity);
-                compoundEntity.appendChild(textEntity);
                 
                 // Add the compound entity to the scene
                 this.el.sceneEl.appendChild(compoundEntity);
